@@ -1,18 +1,10 @@
 
-#define VER 2
+#include "Libraries.h"
 
 #include "IndividualTask.h"
 
 #include "FunctionsForAnIndividualTask.h"
-#include "PersonStruct.h"
-#include "ThisIs.h"
-
-#include <iostream>
-#include <conio.h>
-#include <ctype.h>
-
-
-using namespace std;
+#include "PersonClass.h"
 
 enum class individualTaskMenu
 {
@@ -34,9 +26,9 @@ void individualTask()
 	SetConsoleOutputCP(1251);
 	SetConsoleCP(1251);
 
-	person* head = NULL;
-	person* tail = NULL;
-	person* clients = NULL;
+	Person* head = NULL;
+	Person* tail = NULL;
+	Person* clients = NULL;
 
 	///////	   лемч    /////////
 
@@ -85,7 +77,7 @@ void individualTask()
 			{
 				try
 				{
-					addClients(head, tail, clients);
+					clients->addClients(head, tail, clients);
 				}
 				catch (const exception& err)
 				{
@@ -101,7 +93,7 @@ void individualTask()
 			{
 				try
 				{
-					sortClients(head, tail, clients);
+					clients->sortClients(head, tail, clients);
 				}
 				catch (const exception& err)
 				{
@@ -117,7 +109,7 @@ void individualTask()
 			{
 				try
 				{
-					transformClients(head, tail, clients);
+					clients->transformClients(head, tail, clients);
 				}
 				catch (const exception& err)
 				{
@@ -132,7 +124,7 @@ void individualTask()
 			{
 				try
 				{
-					delClients(head, tail, clients);
+					clients->delClients(head, tail, clients);
 				}
 				catch (const exception& err)
 				{
@@ -147,7 +139,7 @@ void individualTask()
 			{
 				try
 				{
-					showClients(head, tail, clients);
+					clients->showClients(head, tail, clients);
 				}
 				catch (const exception& err)
 				{
@@ -163,7 +155,7 @@ void individualTask()
 			{
 				try
 				{
-					searchClients(head, tail, clients);
+					clients->searchClients(head, tail, clients);
 				}
 				catch (const exception& err)
 				{
@@ -181,7 +173,7 @@ void individualTask()
 			{
 				try
 				{
-					saveClients(head, tail, clients);
+					clients->saveClients(head, tail, clients);
 				}
 				catch (const exception& err)
 				{
@@ -195,7 +187,7 @@ void individualTask()
 			case individualTaskMenu::Load:
 			{
 				try {
-					downloadClients(head, tail, clients);
+					clients->downloadClients(head, tail, clients);
 				}
 				catch (const exception& err)
 				{

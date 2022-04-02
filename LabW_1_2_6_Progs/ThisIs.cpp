@@ -39,18 +39,40 @@ int isInteger_l(char *val)
 	for (int i = 0; i < len; i++)
 		l *= 10;
 
-	for (int i = 0; i < len; i++)
+	if (val[0] == '-')
 	{
-		if (!(48 <= int(val[i]) && 57 >= int(val[i])))
-		{
-			k = true;
-			break;
-		}
 		l /= 10;
 
-		res += ((val[i]) - 48) * l;
+		for (int i = 1; i < len; i++)
+		{
+			if ( (48 <= int(val[i])) && (57 >= int(val[i])) )
+			{
+				res -= ((val[i]) - 48) * l;
+			}
+			else
+			{
+				k = true;
+				break;
+			}
+		}
 	}
 
+	else
+	{
+		for (int i = 0; i < len; i++)
+		{
+			if ( (48 <= int(val[i])) && 57 >= int(val[i]) )
+			{
+				l /= 10;
+				res += ((val[i]) - 48) * l;
+			}
+			else
+			{
+				k = true;
+				break;
+			}
+		}
+	}
 	if (k == true) 
 	{
 		throw exception("\n\tНеверный тип данных");

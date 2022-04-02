@@ -1,19 +1,19 @@
+#pragma once
 
-/*#include "Libraries.h"
+#include "Libraries.h"
 
-#include "FunctionsForAnIndividualTask.h"
 #include "PersonClass.h"
 
-void addClients(Person*& head, Person*& tail, Person*& clients)
+void Person::addClients			(Person*& head, Person*& tail, Person*& clients)
 {
 	cout << "\n\n\tДобавление клиента\n";
-	string	newSurname		= { "None" };
-	string	newName			= { "None" };
-	string	newPatronymic	= { "None" };
-	string	newAddress		= { "None" };
-	string	newPhoneNum		= { "None" };
-	string	newPayDay		= { "None" };
-	char	newSumm[100];	
+	string	newSurname = { "None" };
+	string	newName = { "None" };
+	string	newPatronymic = { "None" };
+	string	newAddress = { "None" };
+	string	newPhoneNum = { "None" };
+	string	newPayDay = { "None" };
+	char	newSumm[100];
 
 	cout << "\n\tВведите данные клиента\n";
 	cout << "\n\tФамилия: "; 	cin.get();		getline(cin, newSurname);
@@ -27,7 +27,7 @@ void addClients(Person*& head, Person*& tail, Person*& clients)
 
 	int newSum = isInteger_l(newSumm);
 
-	if (tail == NULL && head == NULL) 
+	if (tail == NULL && head == NULL)
 	{
 		tail = new Person;
 		clients = tail;
@@ -36,13 +36,13 @@ void addClients(Person*& head, Person*& tail, Person*& clients)
 
 	else
 	{
-	clients = tail;
-	clients->next = new Person;
-	clients->next->prev = clients;
-	clients = clients->next;
-	tail = clients;
+		clients = tail;
+		clients->next = new Person;
+		clients->next->prev = clients;
+		clients = clients->next;
+		tail = clients;
 	}
-	
+
 	clients->DATA.Surname = newSurname;
 	clients->DATA.Name = newName;
 	clients->DATA.Patronymic = newPatronymic;
@@ -62,10 +62,9 @@ void addClients(Person*& head, Person*& tail, Person*& clients)
 	char p = _getch();
 	system("cls");
 	return;
-};
-//finished
+}
 
-void sortClients(Person*& head, Person*& tail, Person*& clients) 
+void Person::sortClients		(Person*& head, Person*& tail, Person*& clients)
 {
 	if (tail == NULL && head == NULL)
 		throw exception("\n\n\tНет данных клиентов для сортировки...");
@@ -95,82 +94,81 @@ void sortClients(Person*& head, Person*& tail, Person*& clients)
 	system("cls");
 	switch (inputNum) {
 
-		case(0): 
-			return;
+	case(0):
+		return;
 
-		case(1): {
-			for (int i = 1; i < counter; i++) 
+	case(1): {
+		for (int i = 1; i < counter; i++)
+		{
+			clients = head;
+			for (int j = 0; j < counter - i; j++)
 			{
-				clients = head;
-				for (int j = 0; j < counter - i; j++)
+				if (clients->DATA.Surname > clients->next->DATA.Surname)
 				{
-					if (clients->DATA.Surname > clients->next->DATA.Surname)
-					{
-						temp->DATA = clients->DATA;
-						clients->DATA = clients->next->DATA;
-						clients->next->DATA = temp->DATA;
-					}
-					clients = clients->next;
+					temp->DATA = clients->DATA;
+					clients->DATA = clients->next->DATA;
+					clients->next->DATA = temp->DATA;
 				}
+				clients = clients->next;
 			}
-			cout << "\n\n\tСортировка по фамилии завершена, нажмите любую кдавишу для возврата в меню... ";
-			char p = _getch();
-			system("cls");
-			return;
 		}
+		cout << "\n\n\tСортировка по фамилии завершена, нажмите любую кдавишу для возврата в меню... ";
+		char p = _getch();
+		system("cls");
+		return;
+	}
 
-		case(2): {
-			for (int i = 1; i < counter; i++)
+	case(2): {
+		for (int i = 1; i < counter; i++)
+		{
+			clients = head;
+			for (int j = 0; j < counter - i; j++)
 			{
-				clients = head;
-				for (int j = 0; j < counter - i; j++)
+				if (clients->DATA.Name > clients->next->DATA.Name)
 				{
-					if (clients->DATA.Name > clients->next->DATA.Name) 
-					{
-						temp->DATA = clients->DATA;
-						clients->DATA = clients->next->DATA;
-						clients->next->DATA = temp->DATA;
-					}
-					clients = clients->next;
+					temp->DATA = clients->DATA;
+					clients->DATA = clients->next->DATA;
+					clients->next->DATA = temp->DATA;
 				}
+				clients = clients->next;
 			}
-			cout << "\n\n\tСортировка по имени завершена, нажмите любую кдавишу для возврата в меню... ";
-			char p = _getch();
-			system("cls");
-			return;
 		}
+		cout << "\n\n\tСортировка по имени завершена, нажмите любую кдавишу для возврата в меню... ";
+		char p = _getch();
+		system("cls");
+		return;
+	}
 
-		default: {
-			throw exception("\n\n\tВведено неверное значение, нажмите любую клавишу для возврата в меню... ");
-		}
+	default: {
+		throw exception("\n\n\tВведено неверное значение, нажмите любую клавишу для возврата в меню... ");
+	}
 	}
 	system("cls");
 }
-//finished
 
-void transform(Person*& head, Person*& tail, Person*& clients)
+void Person::transform			(Person*& head, Person*& tail, Person*& clients)
 {
-	cout	<< "\n\n\tКакие данные изменить\n"
-				<< "\n\t1. Фамилию - " << clients->DATA.Surname
-				<< "\n\t2. Имя - " << clients->DATA.Name
-				<< "\n\t3. Отчество - " << clients->DATA.Patronymic
-				<< "\n\t4. Адресс - " << clients->DATA.Address
-				<< "\n\t5. Телефонный номер - " << clients->DATA.PhoneNum
-				<< "\n\t6. День оплаты - " << clients->DATA.PayDay
-				<< "\n\t7. Сумму - " << clients->DATA.Summ
-				<< "\n\t0. Выход\n\n\t";
+	cout << "\n\n\tКакие данные изменить\n"
+		<< "\n\t1. Фамилию - " << clients->DATA.Surname
+		<< "\n\t2. Имя - " << clients->DATA.Name
+		<< "\n\t3. Отчество - " << clients->DATA.Patronymic
+		<< "\n\t4. Адресс - " << clients->DATA.Address
+		<< "\n\t5. Телефонный номер - " << clients->DATA.PhoneNum
+		<< "\n\t6. День оплаты - " << clients->DATA.PayDay
+		<< "\n\t7. Сумму - " << clients->DATA.Summ
+		<< "\n\t0. Выход\n\n\t";
 	char InIntt;
 	cin >> InIntt;
 
 	int InInt = isInteger(InIntt);
 
 	switch (InInt) {
-		case(0): {return; }
+		case(0): return;
 		case(1): {cout << "\n\n\tВведите Фамилию: ";		cin.get(); getline(cin, clients->DATA.Surname); 	break; }
 		case(2): {cout << "\n\n\tВведите Имя: ";			cin.get(); getline(cin, clients->DATA.Name); 		break; }
 		case(3): {cout << "\n\n\tВведите Отчество: ";		cin.get(); getline(cin, clients->DATA.Patronymic);	break; }
-		case(4): {cout << "\n\n\tВведите Адресс: ";		cin.get(); getline(cin, clients->DATA.Address); 	break; }
-		case(5): {cout << "\n\n\tВведите Телефонный: ";	cin.get(); getline(cin, clients->DATA.PhoneNum); 	break; }
+		case(4): {cout << "\n\n\tВведите Адресс: ";			cin.get(); getline(cin, clients->DATA.Address); 	break; }
+		case(5): {cout << "\n\n\tВведите Телефонный: ";		cin.get(); getline(cin, clients->DATA.PhoneNum); 	break; }
 		case(6): {cout << "\n\n\tВведите День: ";			cin.get(); getline(cin, clients->DATA.PayDay);		break; }
 		case(7): {cout << "\n\n\tВведите Сумму: ";			cin.get();		   cin >> clients->DATA.Summ;		break; }
 		default: {
@@ -179,7 +177,7 @@ void transform(Person*& head, Person*& tail, Person*& clients)
 	}
 	system("cls");
 }
-void transformClients(Person*& head, Person*& tail, Person*& clients)
+void Person::transformClients	(Person*& head, Person*& tail, Person*& clients)
 {
 	if (tail == NULL && head == NULL)
 		throw exception("\n\n\tНет данных клиентов для изменения...");
@@ -293,9 +291,8 @@ void transformClients(Person*& head, Person*& tail, Person*& clients)
 
 	system("cls");
 }
-//finished
 
-void swapAndDelClients(Person*& head, Person*& tail, Person*& clients)
+void Person::swapAndDelClients	(Person*& head, Person*& tail, Person*& clients)
 {
 	if (clients != head && clients != tail) {
 		clients->prev->next = clients->next;
@@ -315,7 +312,7 @@ void swapAndDelClients(Person*& head, Person*& tail, Person*& clients)
 	}
 	delete clients;
 }
-void delClients(Person*& head, Person*& tail, Person*& clients) 
+void Person::delClients			(Person*& head, Person*& tail, Person*& clients)
 {
 	if (tail == NULL && head == NULL)
 		throw exception("\n\n\tНет данных клиентов для удаления...");
@@ -339,113 +336,117 @@ void delClients(Person*& head, Person*& tail, Person*& clients)
 
 	system("cls");
 	clients = head;
-	switch (inputNum) 
+	switch (inputNum)
 	{
-		case(0):
-			return;
+	case(0):
+		return;
 
-		case(1): {
-			cout << "\n\n\tВведите Фамилию или Имя или Отчество. 0. Выход\n\n\t";
-			string inputStr;
-			cin >> inputStr;
-			system("cls");
-			if (inputStr == "0") { return; }
-			int id = 1;
-			int searchID = -1;
-			int couErr = 0;
-			while (true) {
-				if (inputStr == clients->DATA.Surname)		{ searchID = id; couErr++; }
-				if (inputStr == clients->DATA.Name)			{ searchID = id; couErr++; }
-				if (inputStr == clients->DATA.Patronymic)	{ searchID = id; couErr++; }
-				if (clients == tail) break;
-				clients = clients->next;
-				id++;
-			}
-			if (couErr > 1)
-				throw exception("\n\n\tНайдено более одного клиента, введите дргуие даннные клиента. Нажмите любую клавишу для возврата в меню... ");
-
-			if (searchID == -1)
-				throw exception("\n\n\tКлиент не найден, нажмите любую клавишу что-бы вернуться в меню... ");
-
-			if (searchID >= 0) {
-				cout << "\n\n\tУдалить данные клиента " << clients->DATA.Surname << " " << clients->DATA.Name
-					<< " " << clients->DATA.Patronymic << "\n\n\t1. Да\t2. Нет\n\n\t";
-				char inputHH;
-				cin >> inputHH;
-
-				int inputH = isInteger(inputHH);
-
-				system("cls");
-				switch (inputH) 
-				{
-					case(1): 
-					{
-						swapAndDelClients(head, tail, clients);
-						cout << "\n\n\tУспешно удалено, нажмите любую клавишу для выхода в меню... ";
-						char p = _getch();
-						system("cls");
-						return;
-					}
-					case(2): { return; }
-
-					default: {
-						throw exception("\n\n\tВведено неверное значение, нажмите любую клавишу для возврата в меню... ");
-					}
-
-				}
-			}
+	case(1): {
+		cout << "\n\n\tВведите Фамилию или Имя или Отчество. 0. Выход\n\n\t";
+		string inputStr;
+		cin >> inputStr;
+		system("cls");
+		if (inputStr == "0") { return; }
+		int id = 1;
+		int searchID = -1;
+		int couErr = 0;
+		while (true) {
+			if (inputStr == clients->DATA.Surname) { searchID = id; couErr++; }
+			if (inputStr == clients->DATA.Name) { searchID = id; couErr++; }
+			if (inputStr == clients->DATA.Patronymic) { searchID = id; couErr++; }
+			if (clients == tail) break;
+			clients = clients->next;
+			id++;
 		}
+		if (couErr > 1)
+			throw exception("\n\n\tНайдено более одного клиента, введите дргуие даннные клиента. Нажмите любую клавишу для возврата в меню... ");
 
-		case(2): {
-			cout << "\n\n\tВведите номер в базе. 0. Выход\n\n\t";
-			int inputInt;
-			cin >> inputInt;
-			if (inputInt == 0)return;
+		if (searchID == -1)
+			throw exception("\n\n\tКлиент не найден, нажмите любую клавишу что-бы вернуться в меню... ");
+
+		if (searchID >= 0) 
+		{
 			clients = head;
-			for (int i = 0; i < inputInt - 1; i++) 
-			{
+			for (int i = 1; i < searchID; i++)
 				clients = clients->next;
-			}
-			system("cls");
+
 			cout << "\n\n\tУдалить данные клиента " << clients->DATA.Surname << " " << clients->DATA.Name
 				<< " " << clients->DATA.Patronymic << "\n\n\t1. Да\t2. Нет\n\n\t";
-			char inPP;
-			cin >> inPP;
+			char inputHH;
+			cin >> inputHH;
 
-			int inP = isInteger(inPP);
+			int inputH = isInteger(inputHH);
 
 			system("cls");
-			switch (inP) 
+			switch (inputH)
 			{
-				case(1): 
-				{
-					swapAndDelClients(head, tail, clients);
-					cout << "\n\n\tУспешно удалено, нажмите любую клавишу для выхода в меню... ";
-					char p = _getch();
-					system("cls");
-					return;
-				}
+			case(1):
+			{
+				swapAndDelClients(head, tail, clients);
+				cout << "\n\n\tУспешно удалено, нажмите любую клавишу для выхода в меню... ";
+				char p = _getch();
+				system("cls");
+				return;
+			}
+			case(2): { return; }
 
-				case(2): { return; }
-
-				default: {
-					throw exception("\n\n\tВведено неверное значение, нажмите любую клавишу для возврата в меню... ");
-				}
+			default: {
+				throw exception("\n\n\tВведено неверное значение, нажмите любую клавишу для возврата в меню... ");
+			}
 
 			}
 		}
+	}
+
+	case(2): {
+		cout << "\n\n\tВведите номер в базе. 0. Выход\n\n\t";
+		int inputInt;
+		cin >> inputInt;
+		if (inputInt == 0)return;
+		clients = head;
+		for (int i = 0; i < inputInt - 1; i++)
+		{
+			clients = clients->next;
+		}
+		system("cls");
+		cout << "\n\n\tУдалить данные клиента " << clients->DATA.Surname << " " << clients->DATA.Name
+			<< " " << clients->DATA.Patronymic << "\n\n\t1. Да\t2. Нет\n\n\t";
+		char inPP;
+		cin >> inPP;
+
+		int inP = isInteger(inPP);
+
+		system("cls");
+		switch (inP)
+		{
+		case(1):
+		{
+			swapAndDelClients(head, tail, clients);
+			cout << "\n\n\tУспешно удалено, нажмите любую клавишу для выхода в меню... ";
+			char p = _getch();
+			system("cls");
+			return;
+		}
+
+		case(2): { return; }
 
 		default: {
 			throw exception("\n\n\tВведено неверное значение, нажмите любую клавишу для возврата в меню... ");
 		}
 
+		}
+	}
+
+	default: {
+		throw exception("\n\n\tВведено неверное значение, нажмите любую клавишу для возврата в меню... ");
+	}
+
 	}
 	clients = head;
 	system("cls");
 }
-//finished
 
-void showClients(Person*& head, Person*& tail, Person*& clients)
+void Person::showClients		(Person*& head, Person*& tail, Person*& clients)
 {
 	if (tail == NULL && head == NULL)
 		throw exception("\n\n\tНет данных клиентов для вывода...");
@@ -541,14 +542,16 @@ void showClients(Person*& head, Person*& tail, Person*& clients)
 	cout << "\n\tНажмите любую клавишу для возврата в меню... "; char p = _getch(); system("cls");
 	system("cls");
 }
-//finished
 
-void show(Person*& clients) 
+void Person::show				()
 {
-	cout << "\n\n\tФИО: " << clients->DATA.Surname << " " << clients->DATA.Name << " " << clients->DATA.Patronymic << " Адресс: "
-		<< clients->DATA.Address << "\n\tТелефоный номер: " << clients->DATA.PhoneNum << " День оплаты: " << clients->DATA.PayDay << " Сумма: " << clients->DATA.Summ;
+	cout << "\n\n\tФИО: " << this->DATA.Surname << " " << this->DATA.Name << " " << this->DATA.Patronymic 
+		<< " Адресс: "<< this->DATA.Address 
+		<< "\n\tТелефоный номер: " << this->DATA.PhoneNum 
+		<< " День оплаты: " << this->DATA.PayDay 
+		<< " Сумма: " << this->DATA.Summ;
 }
-void searchClients(Person*& head, Person*& tail, Person*& clients) 
+void Person::searchClients		(Person*& head, Person*& tail, Person*& clients)
 {
 	if (tail == NULL && head == NULL)
 		throw exception("\n\n\tНет данных клиентов для поиска...");
@@ -564,9 +567,9 @@ void searchClients(Person*& head, Person*& tail, Person*& clients)
 	clients = head;
 	bool searchID = false;
 	while (true) {
-		if (inputStr == clients->DATA.Surname) { searchID = true; show(clients); }
-		if (inputStr == clients->DATA.Name) { searchID = true; show(clients); }
-		if (inputStr == clients->DATA.Patronymic) { searchID = true; show(clients); }
+		if (inputStr == clients->DATA.Surname) { searchID = true; show(); }
+		if (inputStr == clients->DATA.Name) { searchID = true; show(); }
+		if (inputStr == clients->DATA.Patronymic) { searchID = true; show(); }
 		if (clients->next == NULL) break;
 		clients = clients->next;
 	}
@@ -577,9 +580,8 @@ void searchClients(Person*& head, Person*& tail, Person*& clients)
 	if (searchID == false) { cout << "\n\n\tКлиент не найден, нажмите любую клавишу что-бы вернуться в меню... "; char p = _getch(); system("cls"); return; }
 	system("cls");
 }
-//finished
 
-void saveClients(Person*& head, Person*& tail, Person*& clients)
+void Person::saveClients		(Person*& head, Person*& tail, Person*& clients)
 {
 	if (tail == NULL && head == NULL)
 		throw exception("\n\n\tНет данных клиентов для сохранения...");
@@ -595,61 +597,60 @@ void saveClients(Person*& head, Person*& tail, Person*& clients)
 	system("cls");
 	switch (inNum) {
 
-		case(0): 
-			return;
+	case(0):
+		return;
 
-		case(1): 
+	case(1):
+	{
+		ofstream outClients(INDIVID_OUTPUT_FILE_LOCATION);
+		clients = head;
+		while (true) {
+			outClients << "ФИО: " << clients->DATA.Surname << " " << clients->DATA.Name << " "
+				<< clients->DATA.Patronymic << " Адресс: " << clients->DATA.Address << " Номер тел.: "
+				<< clients->DATA.PhoneNum << " День оплаты: " << clients->DATA.PayDay << " Сумма: "
+				<< clients->DATA.Summ << endl;
+			if (clients == tail) break;
+			clients = clients->next;
+		}
+		cout << "\n\n\tСохраненов файле " << INDIVID_OUTPUT_FILE_LOCATION << "...";
+		char p = _getch();
+		system("cls");
+		break;
+	}
+
+	case(2):
+	{
+		cout << "\n\n\tВведите навание выходного файла (без расширения, используя только буквы): ";
+		string newName;
+		cin.get();
+		getline(cin, newName);
+		newName += ".txt";
+		system("cls");
+		ofstream outClients(newName);
+		clients = head;
+		while (true)
 		{
-			ofstream outClients(INDIVID_OUTPUT_FILE_LOCATION);
-			clients = head;
-			while (true) {
-				outClients << "ФИО: " << clients->DATA.Surname << " " << clients->DATA.Name << " "
-					<< clients->DATA.Patronymic << " Адресс: " << clients->DATA.Address << " Номер тел.: "
-					<< clients->DATA.PhoneNum << " День оплаты: " << clients->DATA.PayDay << " Сумма: "
-					<< clients->DATA.Summ << endl;
-				if (clients == tail) break;
-				clients = clients->next;
-			}
-			cout << "\n\n\tСохраненов файле " << INDIVID_OUTPUT_FILE_LOCATION << "...";
-			char p = _getch();
-			system("cls");
-			break;
+			outClients << "ФИО: " << clients->DATA.Surname << " " << clients->DATA.Name << " "
+				<< clients->DATA.Patronymic << " Адресс: " << clients->DATA.Address << " Номер тел.: "
+				<< clients->DATA.PhoneNum << " День оплаты: " << clients->DATA.PayDay << " Сумма: "
+				<< clients->DATA.Summ << endl;
+			if (clients == tail) break;
+			clients = clients->next;
 		}
+		cout << "\n\n\tСохранено в файле " << newName << "...";
+		char p = _getch();
+		system("cls");
+		break;
+	}
 
-		case(2): 
-		{
-			cout << "\n\n\tВведите навание выходного файла (без расширения, используя только буквы): ";
-			string newName;
-			cin.get();
-			getline(cin, newName);
-			newName += ".txt";
-			system("cls");
-			ofstream outClients(newName);
-			clients = head;
-			while (true) 
-			{
-				outClients << "ФИО: " << clients->DATA.Surname << " " << clients->DATA.Name << " "
-					<< clients->DATA.Patronymic << " Адресс: " << clients->DATA.Address << " Номер тел.: "
-					<< clients->DATA.PhoneNum << " День оплаты: " << clients->DATA.PayDay << " Сумма: "
-					<< clients->DATA.Summ << endl;
-				if (clients == tail) break;
-				clients = clients->next;
-			}
-			cout << "\n\n\tСохранено в файле " << newName << "...";
-			char p = _getch();
-			system("cls");
-			break;
-		}
-
-		default: {
-			throw exception("\n\n\tВведено невенрое значение...");
-		}
+	default: {
+		throw exception("\n\n\tВведено невенрое значение...");
+	}
 
 	}
 }
-//finished
 
-void downloadClients(Person*& head, Person*& tail, Person*& clients) 
+void Person::downloadClients	(Person*& head, Person*& tail, Person*& clients)
 {
 	cout << "\n\n\t1. Загрузтиь из файла с названием " << INDIVID_INPUT_FILE_LOCATION
 		<< " с исходным кодом\n\t2. Изменить название файла\n\t0. Выход\n\n\t";
@@ -661,115 +662,114 @@ void downloadClients(Person*& head, Person*& tail, Person*& clients)
 	system("cls");
 	switch (inNum)
 	{
-		case(0): 
-			return;
+	case(0):
+		return;
 
-		case(1): 
+	case(1):
+	{
+		ifstream inClients(INDIVID_INPUT_FILE_LOCATION);
+
+		if (inClients.bad())
+			throw exception("\n\tОшибка ввода-вывода при чтении");
+
+		if (inClients.eof())
+			throw exception("\n\tДостигнут конец файла");
+
+		if (inClients.fail())
+			throw exception("\n\tНеверный формат данных");
+
+		int size = 0;
+		inClients >> size;
+
+		for (int i = 0; i < size; i++)
 		{
-			ifstream inClients(INDIVID_INPUT_FILE_LOCATION);
-
-			if (inClients.bad())
-				throw exception("\n\tОшибка ввода-вывода при чтении");
-
-			if (inClients.eof())
-				throw exception("\n\tДостигнут конец файла");
-
-			if (inClients.fail())
-				throw exception("\n\tНеверный формат данных");
-
-			int size = 0;
-			inClients >> size;
-
-			for (int i = 0; i < size; i++) 
-			{
-				if (clients == NULL) {
-					clients = new Person;
-					head = clients;
-					tail = clients;
-				}
-
-				else {
-					clients = tail;
-					clients->next = new Person;
-					clients->next->prev = clients;
-					clients = clients->next;
-					tail = clients;
-				}
-
-				inClients.get();
-				getline(inClients, clients->DATA.Surname);
-				getline(inClients, clients->DATA.Name);
-				getline(inClients, clients->DATA.Patronymic);
-				getline(inClients, clients->DATA.Address);
-				getline(inClients, clients->DATA.PhoneNum);
-				getline(inClients, clients->DATA.PayDay);
-				inClients >> clients->DATA.Summ;
+			if (clients == NULL) {
+				clients = new Person;
+				head = clients;
+				tail = clients;
 			}
 
-			cout << "\n\n\tЗагруженно из файле " << INDIVID_INPUT_FILE_LOCATION << "...";
-			char p = _getch();
-			system("cls");
-			break;
-		}
-
-		case(2): 
-		{
-			cout << "\n\n\tВведите навание выходного файла (без расширения, используя только буквы): ";
-			string newName;
-			cin.get();
-			getline(cin, newName);
-			newName += ".txt";
-			system("cls");
-			ifstream inClients(newName);
-
-			if (inClients.bad()) 
-				throw exception("\n\tОшибка ввода-вывода при чтении");
-
-
-			if (inClients.eof())
-				throw exception("\n\tДостигнут конец файла");
-
-
-			if (inClients.fail())
-				throw exception("\n\tНеверный формат данных");
-
-			//if (inClients == NULL)
-			//	throw exception("\n\tНеверный формат данных");
-
-			int size = 0;
-			inClients >> size;
-
-			clients = new Person;
-			head = clients;
-
-			for (int i = 0; i < size; i++) {
-				if (clients == NULL) {
-					clients = new Person;
-					head = clients;
-				}
-				else {
-					clients = clients->next = new Person;
-					tail = clients;
-				}
-				inClients.get();
-				getline(inClients, clients->DATA.Surname);
-				getline(inClients, clients->DATA.Name);
-				getline(inClients, clients->DATA.Patronymic);
-				getline(inClients, clients->DATA.Address);
-				getline(inClients, clients->DATA.PhoneNum);
-				getline(inClients, clients->DATA.PayDay);
-				inClients >> clients->DATA.Summ;
+			else {
+				clients = tail;
+				clients->next = new Person;
+				clients->next->prev = clients;
+				clients = clients->next;
+				tail = clients;
 			}
 
-			cout << "\n\n\tЗагруженно из файле " << newName << "...";
-			char p = _getch();
-			system("cls");
-			break;
+			inClients.get();
+			getline(inClients, clients->DATA.Surname);
+			getline(inClients, clients->DATA.Name);
+			getline(inClients, clients->DATA.Patronymic);
+			getline(inClients, clients->DATA.Address);
+			getline(inClients, clients->DATA.PhoneNum);
+			getline(inClients, clients->DATA.PayDay);
+			inClients >> clients->DATA.Summ;
 		}
 
-		default: {
-			throw exception("\n\n\tВведено невенрое значение...");
+		cout << "\n\n\tЗагруженно из файле " << INDIVID_INPUT_FILE_LOCATION << "...";
+		char p = _getch();
+		system("cls");
+		break;
+	}
+
+	case(2):
+	{
+		cout << "\n\n\tВведите навание выходного файла (без расширения, используя только буквы): ";
+		string newName;
+		cin.get();
+		getline(cin, newName);
+		newName += ".txt";
+		system("cls");
+		ifstream inClients(newName);
+
+		if (inClients.bad())
+			throw exception("\n\tОшибка ввода-вывода при чтении");
+
+
+		if (inClients.eof())
+			throw exception("\n\tДостигнут конец файла");
+
+
+		if (inClients.fail())
+			throw exception("\n\tНеверный формат данных");
+
+		//if (inClients == NULL)
+		//	throw exception("\n\tНеверный формат данных");
+
+		int size = 0;
+		inClients >> size;
+
+		clients = new Person;
+		head = clients;
+
+		for (int i = 0; i < size; i++) {
+			if (clients == NULL) {
+				clients = new Person;
+				head = clients;
+			}
+			else {
+				clients = clients->next = new Person;
+				tail = clients;
+			}
+			inClients.get();
+			getline(inClients, clients->DATA.Surname);
+			getline(inClients, clients->DATA.Name);
+			getline(inClients, clients->DATA.Patronymic);
+			getline(inClients, clients->DATA.Address);
+			getline(inClients, clients->DATA.PhoneNum);
+			getline(inClients, clients->DATA.PayDay);
+			inClients >> clients->DATA.Summ;
 		}
+
+		cout << "\n\n\tЗагруженно из файле " << newName << "...";
+		char p = _getch();
+		system("cls");
+		break;
+	}
+
+	default: {
+		throw exception("\n\n\tВведено невенрое значение...");
+	}
 	}
 }
-//finished*/

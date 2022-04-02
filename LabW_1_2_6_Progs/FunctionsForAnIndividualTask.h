@@ -1,11 +1,13 @@
+/*
 #pragma once
 #include "PersonStruct.h"
 
-void addClients				(person*& head, person*& tail, person*& clients);
-void sortClients			(person*& head, person*& tail, person*& clients);
-void transformClients		(person*& head, person*& tail, person*& clients);
-void delClients				(person*& head, person*& tail, person*& clients);
-void showClients			(person*& head, person*& tail, person*& clients);
-void searchClients			(person*& head, person*& tail, person*& clients);
-void saveClients			(person*& head, person*& tail, person*& clients);
-void downloadClients		(person*& head, person*& tail, person*& clients);  
+void addClients				(Person*& head, Person*& tail, Person*& clients);
+void sortClients			(Person*& head, Person*& tail, Person*& clients);
+void transformClients		(Person*& head, Person*& tail, Person*& clients);
+void delClients				(Person*& head, Person*& tail, Person*& clients);
+void showClients			(Person*& head, Person*& tail, Person*& clients);
+void searchClients			(Person*& head, Person*& tail, Person*& clients);
+void saveClients			(Person*& head, Person*& tail, Person*& clients);
+void downloadClients		(Person*& head, Person*& tail, Person*& clients); 
+*/

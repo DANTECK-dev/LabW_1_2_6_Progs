@@ -1,21 +1,5 @@
 ﻿
-#include <iostream>
-#include <Windows.h>
-#include <stdio.h>
-#include <conio.h>
-#include <string>
-#include <cstdlib>
-#include <cmath>
-#include <time.h>
-#include <random>
-#include <stdlib.h>
-#include <malloc.h>
-#include <algorithm>
-#include <utility>
-#include <fstream>
-#include <io.h> 
-#include <ctype.h>
-#include <limits>
+#include "Libraries.h"
 
 #include "ThisIs.h"
 
