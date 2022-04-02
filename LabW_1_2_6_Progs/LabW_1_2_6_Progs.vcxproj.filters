@@ -15,39 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IndividualTask.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="SecondGeneralTask.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="FirstGeneralTask.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="FunctionsForAnIndividualTask.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="AdditionalTask.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="ThisIs.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="PersonStruct.h">
+    <ClInclude Include="Libraries.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="IndividualTask.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="FirstGeneralTask.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="SecondGeneralTask.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="AdditionalTask.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp">
@@ -56,33 +41,5 @@
     <ClCompile Include="ThisIs.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="FunctionsForAnIndividualTask.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Input_Massive.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-    <Text Include="Input_String.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-    <Text Include="Input_Students.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-    <Text Include="Input_Clients.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-    <Text Include="Output_Clients.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="pay.html">
-      <Filter>Файлы ресурсов</Filter>
-    </None>
-    <None Include="test.html">
-      <Filter>Файлы ресурсов</Filter>
-    </None>
   </ItemGroup>
 </Project>
