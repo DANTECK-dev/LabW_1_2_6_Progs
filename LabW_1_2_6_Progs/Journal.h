@@ -9,15 +9,30 @@ class Journal : public PrintPublication
 {
 private:
 
-	Journal* next = NULL;
-	Journal* prev = NULL;
+	Journal* next;
+	Journal* prev;
 
 protected:
 
-	string number = { "None" };			//номер
-	string month = { "None" };			//мес€ц
+	string number;			//номер
+	string month;			//мес€ц
 
 public:
+
+	Journal()
+	{
+		next = NULL;
+		prev = NULL;
+
+		number = { "None" };
+		month  = { "None" };
+	}
+
+	~Journal()
+	{
+		delete next;
+		delete prev;
+	}
 
 	void getJournal();
 
