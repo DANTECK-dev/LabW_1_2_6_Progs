@@ -4,6 +4,25 @@
 
 #include "Journal.h"
 
+void Journal::createNew(Journal *&headJournals, Journal *&tailJournals)
+{
+	if (this == NULL && headJournals == NULL && tailJournals == NULL)
+	{
+		this == new Journal();
+		headJournals = this;
+		tailJournals = this;
+	}
+	else
+	{
+		this == tailJournals;
+		this->next = new Journal;
+		this->next->prev = this;
+		this == this->next;
+		tailJournals == this;
+	}
+	
+}
+
 void Journal::getJournal()
 {
 	PrintPublication::getPrintPublication();

@@ -1,18 +1,27 @@
-#include "ThisIs.h"
-#include <iostream>
+
+#include "Libraries.h"
 
 using namespace std;
 
 int isInteger(char val)
 {
-	if (48 <= int(val) && 57 >= int(val))
+	try
 	{
-		int N = int(val) - 48;
-		return N;
+		if (48 <= int(val) && 57 >= int(val))
+		{
+			int N = int(val) - 48;
+			return N;
+		}
+		else
+		{
+			throw exception("\n\tНеверный тип данных");
+		}
 	}
-	else
+	catch (const exception& err)
 	{
-		throw exception("\n\tНеверный тип данных");
+		cout << "\n\t" << err.what() << "... ";
+		char p = _getch();
+		system("cls");
 	}
 }	
 
