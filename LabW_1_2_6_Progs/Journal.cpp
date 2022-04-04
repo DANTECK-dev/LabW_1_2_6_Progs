@@ -4,33 +4,49 @@
 
 #include "Journal.h"
 
-void Journal::createNew(Journal *&headJournals, Journal *&tailJournals)
+void Journal::createNew(Journal*& Journals, Journal *&headJournals, Journal *&tailJournals)
 {
-	if (this == NULL && headJournals == NULL && tailJournals == NULL)
+	if (Journals == NULL && headJournals == NULL && tailJournals == NULL)
 	{
-		this == new Journal();
-		headJournals = this;
-		tailJournals = this;
+		Journals = new Journal();
+		headJournals = Journals;
+		tailJournals = Journals;
 	}
 	else
 	{
-		this == tailJournals;
-		this->next = new Journal;
-		this->next->prev = this;
-		this == this->next;
-		tailJournals == this;
+		Journals = tailJournals;
+		Journals->next = new Journal;
+		Journals->next->prev = Journals;
+		Journals = Journals->next;
+		tailJournals = Journals;
 	}
 }
 
-void Journal::getJournal()
+void Journal::getJournal(Journal*& headJournals, Journal*& tailJournals)
 {
-	PrintPublication::getPrintPublication();
+	if (headJournals == NULL && tailJournals == NULL)
+	{
+		cout << "\n\tÍוקודמ גûגמהטעü... ";
+		char p = _getch();
+		system("cls");
+		return;
+	}
 
-	if (s_number != "None")			cout << "\n\tÍמלונ: " << this->s_number;
-	if (i_number != 0)				cout << "\n\tÍמלונ: " << this->i_number;
+	this == headJournals;
 
-	if (s_month != "None")			cout << "\n\tÌוסÿצ: " << this->s_month;
-	if (i_month != 0)				cout << "\n\tÌוסÿצ: " << this->i_month;
+	while (true)
+	{
+		PrintPublication::getPrintPublication();
+
+		if (s_number != "None")			cout << "\n\tÍמלונ: " << this->s_number;
+		if (i_number != 0)				cout << "\n\tÍמלונ: " << this->i_number;
+
+		if (s_month != "None")			cout << "\n\tÌוסÿצ: " << this->s_month;
+		if (i_month != 0)				cout << "\n\tÌוסÿצ: " << this->i_month;
+
+		if (this->next == NULL) break;
+		this == this->next;
+	}
 }
 
 void Journal::setNumber_s(string s_number)

@@ -6,11 +6,12 @@
 
 class Book : public PrintPublication
 {
+
 private:
 
 	Book* next = NULL;
 	Book* prev = NULL;
-
+	
 protected:
 
 	string s_subject; int i_subject; 				//тематика
@@ -20,7 +21,7 @@ protected:
 	string s_numberOfPages; int i_numberOfPages; 	//количество страниц		
 
 public:
-
+	
 	Book()
 	{
 		//s_publisher			= { "None" };

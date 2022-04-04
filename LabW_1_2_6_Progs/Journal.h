@@ -7,6 +7,7 @@
 class Journal : public PrintPublication
 {
 
+private:
 
 	Journal* next = NULL;
 	Journal* prev = NULL;
@@ -40,9 +41,9 @@ public:
 		delete prev;
 	}
 
-	void getJournal();
+	void getJournal		(Journal*& headJournals, Journal*& tailJournals);
 
-	void createNew(Journal *&headJournals, Journal *&tailJournals);
+	void createNew		(Journal *& Journals, Journal *&headJournals, Journal *&tailJournals);
 
 	void setNumber_s	(string s_number);
 	void setNumber_i	(int	i_number);

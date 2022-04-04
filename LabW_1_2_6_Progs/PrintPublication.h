@@ -14,7 +14,7 @@ protected:
 
 private:		
 
-	static int counter;											//кол-во классов
+	static int counter;						//кол-во классов
 
 public:
 
