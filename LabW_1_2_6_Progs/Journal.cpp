@@ -20,7 +20,6 @@ void Journal::createNew(Journal *&headJournals, Journal *&tailJournals)
 		this == this->next;
 		tailJournals == this;
 	}
-	
 }
 
 void Journal::getJournal()
