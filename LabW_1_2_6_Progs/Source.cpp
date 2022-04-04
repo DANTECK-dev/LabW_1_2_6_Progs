@@ -1,8 +1,6 @@
 ﻿
 #include "Libraries.h"
 
-#include "ThisIs.h"
-
 #include "FirstGeneralTask.h"
 #include "SecondGeneralTask.h"
 

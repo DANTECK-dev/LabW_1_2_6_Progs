@@ -1,4 +1,4 @@
-#pragma once
+//#pragma once
 
 #include "Libraries.h"
 
@@ -6,22 +6,16 @@
 
 void TextBook::getTextBook()
 {
-	cout << "\n\tИздательство: " << this->publisher
-		<< "\n\tГод" << this->year
-		<< "\n\tНазвание" << this->title
-		<< "\n\tТематика" << this->subject
-		<< "\n\tАвтор" << this->author
-		<< "\n\tКоличество страниц" << this->numberOfPages
-		<< "\n\tНазначение" << this->purpose;
+	if (s_purpose != "None")	cout << "\n\tНазначение: " << this->s_purpose;
+	if (i_purpose != 0)			cout << "\n\tНазначение: " << this->i_purpose;
 }
 
-void TextBook::setTextBook(string publisher, string year, string title, string subject, string author, string numberOfPages, string purpose)
+void TextBook::setPurpose_s(string s_purpose)
 {
-	this->publisher = publisher;
-	this->year = year;
-	this->title = title;
-	this->subject = subject;
-	this->author = author;
-	this->numberOfPages = numberOfPages;
-	this->purpose = purpose;
+	this->s_purpose = s_purpose;
+}
+
+void TextBook::setPurpose_i(int i_purpose)
+{
+	this->i_purpose = i_purpose;
 }

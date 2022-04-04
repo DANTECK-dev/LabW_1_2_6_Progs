@@ -15,69 +15,104 @@ enum class secondGeneralTaskMenu
 	AddTextBook,
 	GetJournal,
 	GetBook,
-	GetTextBook
+	GetTextBook,
+	GetAll
 };
 
 void secondGeneralTask()
 {
-	while (true)
+	Journal*	Journals		= NULL;
+	Journal*	headJournals	= NULL;
+	Journal*	tailJournals	= NULL;
+
+	Book*		Books			= NULL;
+	Book*		headBooks		= NULL;
+	Book*		tailBooks		= NULL;
+
+	TextBook*	TextBooks		= NULL;
+	TextBook*	headTextBooks	= NULL;
+	TextBook*	tailTextBooks	= NULL;
+
+	cout << "\n\t1 - Добавить журнал\n\t2 - Добавить книгу\n\t3 - Добавить учебник";
+	cout << "\n\t4 - Вывод всех журналов\n\t5 - Вывод всех книг\n\t6 - Вывод всех учебников\n\t0 - Выход\n\t";
+	char kIn;
+	cin >> kIn;
+
+	int inputInt;
+	try
 	{
-		cout << "\n\t1 - Добавить журнал\n\t2 - Добавить книгу\n\t3 - Добавить учебник";
-		cout << "\n\t4 - Вывод всех журналов\n\t5 - Вывод всех книг\n\t6 - Вывод всех учебников\n\t";
-		char kIn;
-		cin >> kIn;
+		inputInt = isInteger(kIn);
+	}
+	catch (const exception& err)
+	{
+		cout << "\n\t" << err.what() << "... ";
+		char p = _getch();
+		system("cls");
+		return;
+	}
 
-		int inputInt;
-		try
+	switch ((secondGeneralTaskMenu)inputInt)
+	{
+		case secondGeneralTaskMenu::Exit: return;
+
+		case secondGeneralTaskMenu::AddJournal:
 		{
-			inputInt = isInteger(kIn);
+			if (Journals == NULL && headJournals == NULL && tailJournals == NULL)
+			{
+				Journals = new Journal;
+				headJournals = Journals;
+				tailJournals = Journals;
+			}
 		}
-		catch (const exception& err)
+
+		case secondGeneralTaskMenu::AddBook:
 		{
-			cout << "\n\t" << err.what() << "... ";
-			char p = _getch();
-			system("cls");
-			return;
+			if (Books == NULL && headBooks == NULL && tailBooks == NULL)
+			{
+				Books = new Book;
+				headBooks = Books;
+				tailBooks = Books;
+			}
 		}
 
-		switch ((secondGeneralTaskMenu)inputInt)
+		case secondGeneralTaskMenu::AddTextBook:
 		{
-			case secondGeneralTaskMenu::Exit: return;
-
-			case secondGeneralTaskMenu::AddJournal:
+			if (TextBooks == NULL && headTextBooks == NULL && tailTextBooks == NULL)
 			{
-
+				TextBooks = new TextBook;
+				headTextBooks = TextBooks;
+				tailTextBooks = TextBooks;
 			}
+		}
 
-			case secondGeneralTaskMenu::AddBook:
-			{
+		case secondGeneralTaskMenu::GetJournal:
+		{
+			Journals->getJournal();
+		}
 
-			}
+		case secondGeneralTaskMenu::GetBook:
+		{
+			Books->getBook();
+		}
 
-			case secondGeneralTaskMenu::AddTextBook:
-			{
+		case secondGeneralTaskMenu::GetTextBook:
+		{
+			TextBooks->getBook();
+		}
 
-			}
+		case secondGeneralTaskMenu::GetAll:
+		{
 
-			case secondGeneralTaskMenu::GetJournal:
-			{
+			Journals->getJournal();
 
-			}
+			Books->getBook();
 
-			case secondGeneralTaskMenu::GetBook:
-			{
+			TextBooks->getBook();
+		}
 
-			}
+		default:
+		{
 
-			case secondGeneralTaskMenu::GetTextBook:
-			{
-
-			}
-
-			default:
-			{
-
-			}
 		}
 	}
 

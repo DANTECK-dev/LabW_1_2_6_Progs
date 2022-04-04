@@ -1,4 +1,4 @@
-#pragma once
+//#pragma once
 
 #include "Libraries.h"
 
@@ -6,18 +6,32 @@
 
 void Journal::getJournal()
 {
-	cout << "\n\tИздательство: " << this->publisher
-		<< "\n\tГод" << this->year
-		<< "\n\tНазвание" << this->title
-		<< "\n\tНомер" << this->number
-		<< "\n\tМесяц" << this->month;
+	PrintPublication::getPrintPublication();
+
+	if (s_number != "None")			cout << "\n\tНомер: " << this->s_number;
+	if (i_number != 0)				cout << "\n\tНомер: " << this->i_number;
+
+	if (s_month != "None")			cout << "\n\tМесяц: " << this->s_month;
+	if (i_month != 0)				cout << "\n\tМесяц: " << this->i_month;
 }
 
-void Journal::setJournal(string publisher, string year, string title, string number, string month)
+void Journal::setNumber_s(string s_number)
 {
-	this->publisher = publisher;
-	this->year = year;
-	this->title = title;
-	this->number = number;
-	this->month = month;
+	this->s_number = s_number;
+}
+
+void Journal::setNumber_i(int	i_number)
+{
+	this->i_number = i_number;
+}
+
+
+void Journal::setMonth_s(string s_month)
+{
+	this->s_month = s_month;
+}
+
+void Journal::setMonth_i(int	i_month)
+{
+	this->i_month = i_month;
 }
