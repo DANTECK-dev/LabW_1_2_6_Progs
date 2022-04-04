@@ -4,6 +4,7 @@
 
 class PrintPublication
 {
+
 protected:
 
 	string s_publisher; int i_publisher; 	//издательство
@@ -27,7 +28,15 @@ public:
 		i_publisher			= 0;
 		i_year				= 0;
 		i_title				= 0;
+		counter++;
 	}
+
+	~PrintPublication()
+	{
+		counter--;
+	}
+
+	static int getConter	();
 
 	void getPrintPublication();
 

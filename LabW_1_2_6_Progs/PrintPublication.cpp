@@ -3,6 +3,11 @@
 
 #include "PrintPublication.h"
 
+int PrintPublication::getConter()
+{
+	return counter;
+}
+
 void PrintPublication::getPrintPublication()
 {
 	if (s_publisher != "None")		cout << "\tИздательство: "	<< this->s_publisher;

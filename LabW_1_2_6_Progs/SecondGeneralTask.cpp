@@ -26,6 +26,8 @@ enum class createMenu
 	String
 };
 
+int PrintPublication::counter = 0;
+
 void secondGeneralTask()
 {
 	Journal*	Journals		= NULL;
@@ -789,7 +791,7 @@ void secondGeneralTask()
 				cout << "\n\n\t\tУчебники: ";
 				TextBooks->getTextBook(TextBooks, headTextBooks, tailTextBooks);
 
-				cout << "\n\n\t\t";
+				cout << "\n\n\n\tВсего печатных изделий: " << PrintPublication::getConter() << "\n\n\t\t";
 				char p = _getch();
 				break;
 			}
