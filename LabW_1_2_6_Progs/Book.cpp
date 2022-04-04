@@ -4,18 +4,55 @@
 
 #include "Book.h"
 
-void Book::getBook()
+void Book::newBook(Book*& Books, Book*& headBooks, Book*& tailBooks)
 {
-	PrintPublication::getPrintPublication();
+	if (Books == NULL && headBooks == NULL && tailBooks == NULL)
+	{
+		Books = new Book();
+		headBooks = Books;
+		tailBooks = Books;
+	}
+	else
+	{
+		Books = tailBooks;
+		Books->next = new Book();
+		Books->next->prev = Books;
+		Books = Books->next;
+		tailBooks = Books;
+	}
+}
 
-	if (s_subject != "None")		cout << "\n\tНазвание: "			<< this->s_subject;
-	if (i_subject != 0)				cout << "\n\tНазвание: "			<< this->i_subject;
+void Book::getBook(Book*& Books, Book*& headBooks, Book*& tailBooks)
+{
+	if (Books == NULL && headBooks == NULL && tailBooks == NULL)
+	{
+		cout << "\n\tНечего выводить... ";
+		return;
+	}
 
-	if (s_author != "None")			cout << "\n\tАвтор: "				<< this->s_author;
-	if (i_author != 0)				cout << "\n\tАвтор: "				<< this->i_author;
+	Books = headBooks;
 
-	if (s_numberOfPages != "None")	cout << "\n\tКоличество страниц: "	<< this->s_numberOfPages;
-	if (i_numberOfPages != 0)		cout << "\n\tКоличество страниц: "	<< this->i_numberOfPages;
+	int counter = 0;
+
+	while (true)
+	{
+		counter++;
+		cout << "\n\t" << counter << " Книги:";
+
+		Books->getPrintPublication();
+
+		if (s_subject != "None")		cout << "\tНазвание: "			<< this->s_subject;
+		if (i_subject != 0)				cout << "\tНазвание: "			<< this->i_subject;
+
+		if (s_author != "None")			cout << "\tАвтор: "				<< this->s_author;
+		if (i_author != 0)				cout << "\tАвтор: "				<< this->i_author;
+
+		if (s_numberOfPages != "None")	cout << "\tКоличество страниц: "	<< this->s_numberOfPages;
+		if (i_numberOfPages != 0)		cout << "\tКоличество страниц: "	<< this->i_numberOfPages;
+
+		if (Books->next == NULL) break;
+		Books = Books->next;
+	}
 }
 
 #pragma region sets

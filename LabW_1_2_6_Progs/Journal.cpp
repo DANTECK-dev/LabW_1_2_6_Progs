@@ -4,7 +4,7 @@
 
 #include "Journal.h"
 
-void Journal::createNew(Journal*& Journals, Journal *&headJournals, Journal *&tailJournals)
+void Journal::newJournal(Journal*& Journals, Journal *&headJournals, Journal *&tailJournals)
 {
 	if (Journals == NULL && headJournals == NULL && tailJournals == NULL)
 	{
@@ -15,37 +15,40 @@ void Journal::createNew(Journal*& Journals, Journal *&headJournals, Journal *&ta
 	else
 	{
 		Journals = tailJournals;
-		Journals->next = new Journal;
+		Journals->next = new Journal();
 		Journals->next->prev = Journals;
 		Journals = Journals->next;
 		tailJournals = Journals;
 	}
 }
 
-void Journal::getJournal(Journal*& headJournals, Journal*& tailJournals)
+void Journal::getJournal(Journal*& Journals, Journal*& headJournals, Journal*& tailJournals)
 {
-	if (headJournals == NULL && tailJournals == NULL)
+	if (Journals == NULL && headJournals == NULL && tailJournals == NULL)
 	{
 		cout << "\n\tНечего выводить... ";
-		char p = _getch();
-		system("cls");
 		return;
 	}
 
-	this == headJournals;
+	Journals = headJournals;
+
+	int counter = 0;
 
 	while (true)
 	{
-		PrintPublication::getPrintPublication();
+		counter++;
+		cout << "\n\t" << counter << " Журнал:";
 
-		if (s_number != "None")			cout << "\n\tНомер: " << this->s_number;
-		if (i_number != 0)				cout << "\n\tНомер: " << this->i_number;
+		Journals->getPrintPublication();
 
-		if (s_month != "None")			cout << "\n\tМесяц: " << this->s_month;
-		if (i_month != 0)				cout << "\n\tМесяц: " << this->i_month;
+		if (s_number != "None")			cout << "\tНомер: " << Journals->s_number;
+		if (i_number != 0)				cout << "\tНомер: " << Journals->i_number;
 
-		if (this->next == NULL) break;
-		this == this->next;
+		if (s_month != "None")			cout << "\tМесяц: " << Journals->s_month;
+		if (i_month != 0)				cout << "\tМесяц: " << Journals->i_month;
+
+		if (Journals->next == NULL) break;
+		Journals = Journals->next;
 	}
 }
 

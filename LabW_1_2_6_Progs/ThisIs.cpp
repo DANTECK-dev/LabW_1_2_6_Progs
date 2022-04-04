@@ -93,6 +93,8 @@ int isInteger_l(char *val)
 	}
 }
 
+
+
 /*double isDouble(double val)
 {
 	int k = val;

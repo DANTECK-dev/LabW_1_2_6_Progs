@@ -24,16 +24,10 @@ public:
 	
 	Book()
 	{
-		//s_publisher			= { "None" };
-		//s_year				= { "None" };
-		//s_title				= { "None" };
 		s_subject			= { "None" };
 		s_author			= { "None" };
 		s_numberOfPages		= { "None" };
 
-		//i_publisher			= 0;
-		//i_year				= 0;
-		//i_title				= 0;
 		i_subject			= 0;
 		i_author			= 0;
 		i_numberOfPages		= 0;
@@ -45,7 +39,9 @@ public:
 		delete prev;
 	}
 
-	void getBook();
+	void getBook			(Book*& Books, Book*& headBooks, Book*& tailBooks);
+
+	void newBook			(Book*& Books, Book*& headBooks, Book*& tailBooks);
 
 	void setSubject_s		(string s_subject);
 	void setSubject_i		(int	i_subject);
